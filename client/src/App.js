@@ -14,13 +14,23 @@ function App() {
          <Fragment>
             <Router>
                <Navbar />
-               <Routes>
-                  <Route exact path="" element={<Home />} />
-                  <Route exact path="about" element={<About />} />
-                  <Route exact path="companies" element={<BrowseCompanies />} />
-                  <Route exact path="details" element={<CompanyDetails />} />
-                  <Route exact path="banker/edit" element={<EditCompany />} />
-               </Routes>
+               <section className="container">
+                  <Routes>
+                     <Route exact path="" element={<Home />} />
+                     <Route exact path="about" element={<About />} />
+                     <Route
+                        exact
+                        path="companies"
+                        element={<BrowseCompanies />}
+                     />
+                     <Route exact path="details" element={<CompanyDetails />} />
+                     <Route
+                        exact
+                        path="banker/edit"
+                        element={<EditCompany />}
+                     />
+                  </Routes>
+               </section>
             </Router>
          </Fragment>
       </div>
