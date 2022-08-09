@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import BrowseCompanies from "./components/BrowseCompanies";
 import CompanyDetails from "./components/CompanyDetails";
 import Navbar from "./components/Navbar";
+import EditCompany from "./components/EditCompany";
 
 function App() {
    return (
@@ -18,6 +19,7 @@ function App() {
                   <Route exact path="about" element={<About />} />
                   <Route exact path="companies" element={<BrowseCompanies />} />
                   <Route exact path="details" element={<CompanyDetails />} />
+                  <Route exact path="banker/edit" element={<EditCompany />} />
                </Routes>
             </Router>
          </Fragment>
