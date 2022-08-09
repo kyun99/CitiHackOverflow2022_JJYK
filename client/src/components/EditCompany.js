@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import InputLabel from '@mui/material/InputLabel';
-import { FormControl, Input, FormHelperText, Button, Select, MenuItem, Grid } from '@mui/material';
+import { FormControl, Input, FormHelperText, Box, Button, Select, MenuItem, Grid, TextareaAutosize } from '@mui/material';
 
 
 
@@ -13,29 +13,83 @@ const profile = "Yangzijiang is one of the largest, most efficient, and profitab
 
 
 const EditCompany = () => {
+  const [recentDevelopments, setRecentDevelopments] = useState([
+    { title: "Yangzijiang Shipbuilding Holdings Ltd: A good set of 1H22 results", link: "https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08082022.xml" },
+    { title: "Yangzijiang Shipbuilding: Trading at unwarranted deep discount to peers", link: "https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08042022.xml" }
+  ])
+
+  const [esgInitiatives, setEsgInitiatives] = useState([
+    { title: "Yangzijiang Shipbuilding Holdings reduces carbon emissions in 1H22", link: "https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08082022.xml" },
+    { title: "Yangzijiang Shipbuilding Increase resiliance of supply chain", link: "https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08042022.xml" }
+  ])
+
   const removeRecentDevelopment = (index) => {
-    // var temp = recentDevelopments.splice(index,1)
-    // var temp = recentDevelopments
-    // setRecentDevelopments(temp)
+    setRecentDevelopments((oldstate) => {
+      const res = []
+      // Remove element at specified index
+      for (let i = 0; i < oldstate.length; i++) {
+        if (i != index) {
+          res.push(JSON.parse(JSON.stringify(oldstate[i])))
+        }
+      }
+      return res
+    })
   }
-  
+
+  const removeEsgInitiatives = (index) => {
+    setEsgInitiatives((oldstate) => {
+      const res = []
+      // Remove element at specified index
+      for (let i = 0; i < oldstate.length; i++) {
+        if (i != index) {
+          res.push(JSON.parse(JSON.stringify(oldstate[i])))
+        }
+      }
+      return res
+    })
+  }
+
+  const addEsgInitiatives = () => {
+    setRecentDevelopments((oldstate) => {
+      var res = []
+      for (let i = 0; i < oldstate.length; i++) {
+        res.push(JSON.parse(JSON.stringify(oldstate[i])))
+      }
+      res.push({ title: "", link: "" })
+      console.log(res)
+      return res
+    })
+  }
+
+  const addRecentDevelopments = () => {
+    setRecentDevelopments((oldstate) => {
+      var res = []
+      for (let i = 0; i < oldstate.length; i++) {
+        res.push(JSON.parse(JSON.stringify(oldstate[i])))
+      }
+      res.push({ title: "", link: "" })
+      console.log(res)
+      return res
+    })
+  }
+
   const handleSubmit = () => {
-  
+
   }
-  const inputSx = { width: 300 }
+  const inputSx = { width: 200 }
 
-  // const [setRecentDevelopments, recentDevelopments] = useState([])
 
-  // useEffect(() => {
-  //   setRecentDevelopments([
-  //     {title: "Yangzijiang Shipbuilding Holdings Ltd: A good set of 1H22 results", link:"https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08082022.xml"},
-  //     {title: "Yangzijiang Shipbuilding: Trading at unwarranted deep discount to peers", link:"https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08042022.xml"}
-  // ])},[])
-  
-  
+  useEffect(() => {
+    setRecentDevelopments(old => ([
+      { title: "Yangzijiang Shipbuilding Holdings Ltd: A good set of 1H22 results", link: "https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08082022.xml" },
+      { title: "Yangzijiang Shipbuilding: Trading at unwarranted deep discount to peers", link: "https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08042022.xml" }
+    ]))
+  }, [])
+
+
   return <Fragment>
     <h2>Edit Company Details</h2>
-    <form onSubmit={handleSubmit} align='center'>
+    <form onSubmit={handleSubmit} align='left'>
       <FormControl>
         <InputLabel htmlFor="targetprice">Target Price</InputLabel>
         <Input id="targetprice" aria-describedby="targetprice-helper" sx={inputSx} />
@@ -48,7 +102,6 @@ const EditCompany = () => {
           id="recommendation-select"
           label="Recommendation"
           sx={inputSx}
-        // onChange={handleChange}
         >
           <MenuItem value={10}>Buy</MenuItem>
           <MenuItem value={20}>Sell</MenuItem>
@@ -67,19 +120,48 @@ const EditCompany = () => {
       </FormControl>
       <Grid>
         <h2>Recent Developments</h2>
-          {/* {recentDevelopments.map((index, item) => <Button>Test</Button>)} */}
-          <Button>TEst</Button>
-          <Button>sfe</Button>
-        <h2>Key ESG Initiatives</h2>
+        {recentDevelopments.map((item, index) => (
+          <Grid>
+            <FormControl>
+              <InputLabel htmlFor="bloombergcode">Title</InputLabel>
+              <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputSx} />
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
+              <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputSx} />
+            </FormControl>
+            <Button onClick={() => removeRecentDevelopment(index)}>Delete</Button>
+          </Grid>
+        ))}
         <Grid>
-          <FormControl>
-            <InputLabel htmlFor="resourcetitle">Resource Title</InputLabel>
-            <Input id="resourcetitle" sx={inputSx} />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="resourcelink">Resource Link</InputLabel>
-            <Input id="resourcelink" sx={inputSx} />
-          </FormControl>
+          <Button onClick={addRecentDevelopments}>+ New Recent Development</Button>
+        </Grid>
+        <FormControl>
+              {/* <InputLabel htmlFor="summaryrecentdevelopments"></InputLabel> */}
+              <TextareaAutosize id="summaryrecentdevelopments" placeholder="Summary Of Recent Developments" style={{'height':'80px', 'width':'400px'}}/>
+        </FormControl>
+        <h2>Key ESG Initiatives</h2>
+        {esgInitiatives.map((item, index) => (
+          <Grid container>
+            <FormControl>
+              <InputLabel htmlFor="bloombergcode">Title</InputLabel>
+              <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputSx} />
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
+              <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputSx} />
+            </FormControl>
+            <Button onClick={() => removeEsgInitiatives(index)}>Delete</Button>
+          </Grid>
+        ))}
+        <Grid>
+          <Button onClick={addRecentDevelopments}>+ New ESG Initiatives</Button>
+        </Grid>
+        <Grid>
+        <FormControl>
+              {/* <InputLabel htmlFor="summaryrecentdevelopments"></InputLabel> */}
+              <TextareaAutosize id="summaryesginitiatives" placeholder="Summary Of ESG Initiatives" style={{'height':'80px', 'width':'400px'}}/>
+        </FormControl>
         </Grid>
         <Button>Update</Button>
       </Grid>
