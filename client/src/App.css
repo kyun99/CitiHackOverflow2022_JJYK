@@ -52,3 +52,9 @@ a :hover {
    font-size: 20px;
    margin-right: 3rem;
 }
+
+.DetailComponent {
+   border-bottom: solid;
+   color: black;
+   border-bottom-style: double;
+}

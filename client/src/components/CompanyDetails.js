@@ -1,9 +1,15 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Detail from './Detail';
 
 const CompanyDetails = () => {
+   const CompanyName = "John's Poultry"
    return (
       <div>
-         <h1>Company Details</h1>
+         <Fragment>
+            <h1 className="name">{CompanyName}</h1>
+            <Detail />
+            <Detail />
+         </Fragment>
       </div>
    );
 };

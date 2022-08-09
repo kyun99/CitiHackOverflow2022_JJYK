@@ -7,6 +7,7 @@ import BrowseCompanies from "./components/BrowseCompanies";
 import CompanyDetails from "./components/CompanyDetails";
 import Navbar from "./components/Navbar";
 import EditCompany from "./components/EditCompany";
+import SearchPage from "./components/SearchPage";
 
 function App() {
    return (
@@ -28,6 +29,11 @@ function App() {
                         exact
                         path="banker/edit"
                         element={<EditCompany />}
+                     />
+                     <Route
+                        exact
+                        path="searchpage"
+                        element={<SearchPage />}
                      />
                   </Routes>
                </section>
