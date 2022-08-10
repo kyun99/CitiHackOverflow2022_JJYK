@@ -13,7 +13,7 @@ function App() {
       <div className="App">
          <Fragment>
             <Router>
-               <Navbar />
+               <Navbar className="navbar"/>
                <section className="container">
                   <Routes>
                      <Route exact path="" element={<Home />} />

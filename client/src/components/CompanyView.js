@@ -16,27 +16,27 @@ const bull = (
   </Box>
 );
 
-export default function BasicCard() {
+export default function BasicCard(props) {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Company Name
+          {props.header}
         </Typography>
         <Typography variant="h5" component="div">
-          John's Poultry
+          {props.companyname}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          agriculture
+          {props.industry}
         </Typography>
         <Typography variant="body2">
-          Can insert brief summary of company here
+          {props.summary}
           <br />
           
         </Typography>
       </CardContent>
       <CardActions>
-        <Button component={Link} to="/details" size="small">See more details about company here</Button>
+        <Button component={Link} to="/details" size="small">See more details about {props.companyname} here</Button>
       </CardActions>
     </Card>
   );
