@@ -60,10 +60,16 @@ a :hover {
 }
 
 .bannerContainer {
-   justify-content: flex-start;
-   align-items: center;
+   align-items: left;
 }
 
 .BrowseCompanies {
    justify-content: left;
+}
+
+.about {
+   margin-left: -100px;
+   padding-left: -100px;
+   display: flex;
+   color:black;
 }
