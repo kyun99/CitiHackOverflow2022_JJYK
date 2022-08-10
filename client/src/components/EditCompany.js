@@ -50,7 +50,7 @@ const EditCompany = () => {
   }
 
   const addEsgInitiatives = () => {
-    setRecentDevelopments((oldstate) => {
+    setEsgInitiatives((oldstate) => {
       var res = []
       for (let i = 0; i < oldstate.length; i++) {
         res.push(JSON.parse(JSON.stringify(oldstate[i])))
