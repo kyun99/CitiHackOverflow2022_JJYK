@@ -10,6 +10,18 @@ const BrowseCompanies = () => {
             <SearchBar />
             <CompanyView 
             header="Company Name" 
+            companyname="Wilmar International" 
+            industry="Agrubusiness" 
+            summary="Wilmar International (Wilmar) is an integrated agribusiness company. It is involved in oil palm cultivation, edible oil refining, oilseed crushing, consumer pack edible oil processing and merchandising, specialty fats, oleochemicals and biodiesel manufacturing, and grain processing and merchandising. Wilmar also manufactures and distributes fertilisers and owns a fleet of vessels."  
+            />
+            <CompanyView 
+            header="Company Name" 
+            companyname="Yanghzijiang Shipbuilding" 
+            industry="Shipbuilding" 
+            summary="Yangzijiang is one of the largest, most efficient, and profitable shipbuilders in China. It has moved up the value chain to produce ultra-large containerships and very large bulk carriers, as well as LNG vessels."  
+            />
+            <CompanyView 
+            header="Company Name" 
             companyname="Meta" 
             industry="Social Media, Social Media Network Advertising" 
             summary="At Meta, we are constantly iterating, solving problems and working together to connect people all over the world. That’s why it’s important that our workforce reflects the diversity of the people we serve. Hiring people with different backgrounds and points of view helps us make better decisions, build better products and create better experiences for everyone."  

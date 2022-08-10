@@ -1,14 +1,48 @@
 import React, { Fragment } from "react";
-import Detail from './Detail';
+import DetailImage from "./DetailImage";
+import DetailText from './DetailText';
 
 const CompanyDetailPage = () => {
-   const CompanyName = "John's Poultry"
+   const CompanyName = "Wilmar International"
+   //Example information borrowed from DBS market insights page (open for viewing)
    return (
       <div>
          <Fragment>
+         <div style={{fontSize:"30px"}}>
             <h1 className="name">{CompanyName}</h1>
-            <Detail />
-            <Detail />
+         </div>
+            <DetailImage 
+               title="Quick View"
+               img="QuickView.jpg"
+            />
+            <DetailText 
+               title="Profile"
+               content="Wilmar International (Wilmar) is an integrated agribusiness company. It is involved in oil palm cultivation, edible oil refining, oilseed crushing, consumer pack edible oil processing and merchandising, specialty fats, oleochemicals and biodiesel manufacturing, and grain processing and merchandising. Wilmar also manufactures and distributes fertilisers and owns a fleet of vessels." 
+            />
+            <DetailImage 
+               title="Previous Close Price"
+               img="prevClosePrice.jpg"
+            />
+            <DetailImage 
+               title="Key Statistics"
+               img="keyStats.jpg"
+            />
+            <DetailText 
+               title="Our Views"
+               content="Insert analyst views here regarding ESG" 
+            />
+            <DetailText 
+               title="Risks"
+               content="Worse-than-expected margin performance. If Wilmar fails to secure favourable raw materials at a good price, it may not be able to maintain its positive earnings performance." 
+            />
+            <DetailText 
+               title="Sentiment Analysis"
+               content="Insert Sentiment Analysis here" 
+            />
+            <DetailText 
+               title="Key ESG initiatives by Wilmar International"
+               content="Initiatives list here" 
+            />
          </Fragment>
       </div>
    );
