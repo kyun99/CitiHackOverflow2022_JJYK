@@ -58,3 +58,12 @@ a :hover {
    color: black;
    border-bottom-style: double;
 }
+
+.bannerContainer {
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.BrowseCompanies {
+   justify-content: left;
+}
