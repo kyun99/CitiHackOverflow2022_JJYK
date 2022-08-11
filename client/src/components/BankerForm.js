@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import InputLabel from '@mui/material/InputLabel';
 import { FormControl, Input, FormHelperText, Box, Button, Select, MenuItem, Grid, TextareaAutosize } from '@mui/material';
+import axios from 'axios';
 
 
 
@@ -11,7 +12,19 @@ const bloombergCode = "YZJSGD_SP_Equity"
 const profile = "Yangzijiang is one of the largest, most efficient, and profitable shipbuilders in China. It has moved up the value chain to produce ultra-large containerships and very large bulk carriers, as well as LNG vessels."
 
 const BankerForm = (props) => {
-  const industries = ['Agriculture', 'Construction', 'Logistics', 'Marketing','Mining', 'Retail', 'Robotics', 'Technology', ]
+  const [industries, setIndustries] = useState([])
+  // const industries = ['Agriculture', 'Construction', 'Logistics', 'Marketing','Mining', 'Retail', 'Robotics', 'Technology', ]
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/moneyplant/industry/')
+    .then(resp => {
+      console.log(resp.status)
+      setIndustries(oldarr => (resp.data))
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  },[]);
 
   const removeRecentDevelopment = (index) => {
     props.setRecentDevelopments((oldstate) => {
@@ -107,7 +120,8 @@ const BankerForm = (props) => {
               label="Industry"
               sx={{ width: 180 }}
             >
-              {industries.map(item => (<MenuItem value={item}>{item}</MenuItem>))}
+              {/* {industries.map(item => (<MenuItem value={item}>{item}</MenuItem>))} */}
+              {industries.map(item => (<MenuItem value={item.name}>{item.name}</MenuItem>))}
             </Select>
           </FormControl>
         </div>
