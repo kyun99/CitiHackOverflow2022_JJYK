@@ -1,5 +1,5 @@
 import { Button, Grid } from "@mui/material";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"
 import DetailImage from "./DetailImage";
 import DetailText from './DetailText';
@@ -10,10 +10,23 @@ const CompanyDetailPage = (props) => {
    const params = new URLSearchParams(location.search)
    const bloombergCode =  params.get('code');
    const profile = props.profile
-
-
-
    const editLink = `/banker/edit?code=${bloombergCode}`
+
+   const [esgInitiatives, setEsgInitiatives] = useState([
+    {title: "Carbon emissions reduced by 7.3% for 1H2022", resource:'somelink', upvote: 17, downvote: 2},
+    {title: "Workplace diversity increased by 40% for 2022", resource:'somelink', upvote: 38, downvote: 130},
+    {title: "MOU signed to accelerate switch to electric vehicles by 2030", resource:'somelink', upvote: 204, downvote:43},
+   ])
+
+   const upVote = (id) => {
+
+   }
+
+   const downVote = (id) => {
+
+  }
+
+   
 
    //Example information borrowed from DBS market insights page (open for viewing)
    return (
@@ -63,8 +76,16 @@ const CompanyDetailPage = (props) => {
             />
             <DetailText 
                title="Key ESG initiatives by Wilmar International"
-               content="Initiatives list here" 
+               content={esgInitiatives.map(item => (
+               <Grid>
+                <a href={item.resource}>{item.title}</a>
+                {item.upvote}
+                <Button onClick={() => upVote(item.id)}>Upvote</Button>
+                {item.downvote}
+               <Button onClick={() => downVote(item.id)}>Downvote</Button>
+               </Grid>)) }
             />
+            
          </Fragment>
       </div>
    );
