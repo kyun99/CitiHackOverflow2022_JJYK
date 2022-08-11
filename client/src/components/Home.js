@@ -23,7 +23,7 @@ const Home = () => {
                      integrate ESG investing to build towards a better future.
                   </p>
                   <Link to="companies" className="btn">
-                     View Companies >
+                     View Companies
                   </Link>
                </div>
                <table>Recent Developments</table>
