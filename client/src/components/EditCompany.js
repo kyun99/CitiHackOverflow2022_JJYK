@@ -50,7 +50,7 @@ const EditCompany = () => {
   }
 
   const addEsgInitiatives = () => {
-    setRecentDevelopments((oldstate) => {
+    setEsgInitiatives((oldstate) => {
       var res = []
       for (let i = 0; i < oldstate.length; i++) {
         res.push(JSON.parse(JSON.stringify(oldstate[i])))
@@ -89,12 +89,16 @@ const EditCompany = () => {
 
   return <Fragment>
     <h2>Edit Company Details</h2>
-    <form onSubmit={handleSubmit} align='left'>
+    <form onSubmit={handleSubmit} align='left' className="form1">
+      <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginBottom:'20px'}}>
+      <div>
       <FormControl>
         <InputLabel htmlFor="targetprice">Target Price</InputLabel>
         <Input id="targetprice" aria-describedby="targetprice-helper" sx={inputSx} />
         <FormHelperText id="targetprice-helper">Target price for recommendation</FormHelperText>
       </FormControl>
+      </div>
+      <div>
       <FormControl size='large'>
         <InputLabel id="recommendation-label">Recommendation</InputLabel>
         <Select
@@ -108,29 +112,41 @@ const EditCompany = () => {
           <MenuItem value={30}>Hold</MenuItem>
         </Select>
       </FormControl>
+      </div>
+      <div>
       <FormControl>
         <InputLabel htmlFor="marketcap">Market Capitalisation</InputLabel>
         <Input id="marketcap" aria-describedby="marketcap-helper" sx={inputSx} />
         <FormHelperText id="marketcap-helper">Market Capitalisation</FormHelperText>
       </FormControl>
+      </div>
+      <div>
       <FormControl>
         <InputLabel htmlFor="bloombergcode">Bloomberg Code</InputLabel>
         <Input id="bloombergcode" aria-describedby="bloombergcode-helper" sx={inputSx} />
         <FormHelperText id="bloombergcode-helper">Market Capitalisation</FormHelperText>
       </FormControl>
+      </div>
+      </div>
       <Grid>
         <h2>Recent Developments</h2>
         {recentDevelopments.map((item, index) => (
           <Grid>
-            <FormControl>
-              <InputLabel htmlFor="bloombergcode">Title</InputLabel>
-              <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputSx} />
-            </FormControl>
-            <FormControl>
-              <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
-              <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputSx} />
-            </FormControl>
-            <Button onClick={() => removeRecentDevelopment(index)}>Delete</Button>
+            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginBottom:'20px'}}>
+              <div>
+              <FormControl>
+                <InputLabel htmlFor="bloombergcode">Title</InputLabel>
+                <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputSx} label="" />
+              </FormControl>
+              </div>
+              <div>
+              <FormControl>
+                <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
+                <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputSx} label="" />
+              </FormControl>
+              </div>
+              <Button onClick={() => removeRecentDevelopment(index)}>Delete</Button>
+            </div>
           </Grid>
         ))}
         <Grid>
@@ -142,20 +158,26 @@ const EditCompany = () => {
         </FormControl>
         <h2>Key ESG Initiatives</h2>
         {esgInitiatives.map((item, index) => (
-          <Grid container>
-            <FormControl>
-              <InputLabel htmlFor="bloombergcode">Title</InputLabel>
-              <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputSx} />
-            </FormControl>
-            <FormControl>
-              <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
-              <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputSx} />
-            </FormControl>
-            <Button onClick={() => removeEsgInitiatives(index)}>Delete</Button>
+          <Grid>
+            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginBottom:'20px'}}>
+              <div>
+              <FormControl>
+                <InputLabel htmlFor="bloombergcode">Title</InputLabel>
+                <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputSx} />
+              </FormControl>
+              </div>
+              <div>
+              <FormControl>
+                <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
+                <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputSx} />
+              </FormControl>
+              </div>
+              <Button onClick={() => removeEsgInitiatives(index)}>Delete</Button>
+            </div>
           </Grid>
         ))}
         <Grid>
-          <Button onClick={addRecentDevelopments}>+ New ESG Initiatives</Button>
+          <Button onClick={addEsgInitiatives}>+ New ESG Initiatives</Button>
         </Grid>
         <Grid>
         <FormControl>
