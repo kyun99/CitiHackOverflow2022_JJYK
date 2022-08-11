@@ -8,6 +8,7 @@ import CompanyDetailPage from "./components/CompanyDetailPage";
 import Navbar from "./components/Navbar";
 import EditCompany from "./components/EditCompany";
 import CreateCompany from "./components/CreateCompany";
+import Industries from "./components/Industries"
 
 function App() {
   const [isBanker, setIsBanker] = useState(true)
@@ -24,6 +25,7 @@ function App() {
                <Routes>
                   <Route exact path="" element={<Home />} />
                      <Route exact path="about" element={<About />} />
+                     <Route exact path="industries" element={<Industries />} />
                      <Route
                         path="companies"
                         element={<BrowseCompanies isBanker={isBanker}/>}

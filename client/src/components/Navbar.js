@@ -27,6 +27,11 @@ const Navbar = (props) => {
       </Link>
       <Fragment>
         <ul className="navbar-list">
+        {props.isBanker && (<li>
+            <Link to="industries">
+              <span>Industries</span>
+            </Link>
+          </li>)}
           <li>
             <Link to="companies">
               <span>Companies</span>
