@@ -38,8 +38,15 @@ const Industries = (props) => {
     getIndustries()
   },[]);
 
-  const handleDelete = (id) => {
-
+  const handleDelete = (name) => {
+    axios.delete(`http://127.0.0.1:8000/moneyplant/industry/${name}`)
+    .then(resp => {
+      console.log(resp)
+      getIndustries()
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   const handleCreate = (e) => {
@@ -105,7 +112,7 @@ const Industries = (props) => {
               {item.esgScore}
             </Typography>
           </CardContent>
-          <Button variant='contained' onClick={() => handleDelete(item.id)}>Remove</Button>
+          <Button variant='contained' onClick={() => handleDelete(item.name)}>Remove</Button>
         </Card>
       ))}
 
