@@ -19,7 +19,6 @@ const CompanyDetailPage = (props) => {
    ])
 
    const upVote = (id) => {
-      console.log(esgInitiatives[id])
       setEsgInitiatives(prevState => {
         const newState = [...prevState];
         for (let i = 0; i < newState.length; i++) {
@@ -42,8 +41,6 @@ const CompanyDetailPage = (props) => {
       return newState;
     })
   }
-
-   
 
    //Example information borrowed from DBS market insights page (open for viewing)
    return (

@@ -40,40 +40,54 @@ const BankerForm = (props) => {
   }
 
   const removeEsgInitiatives = (index) => {
-    props.setEsgInitiatives((oldstate) => {
-      const res = []
+    props.setEsgInitiatives((prevState) => {
+      const newState = []
       // Remove element at specified index
-      for (let i = 0; i < oldstate.length; i++) {
+      for (let i = 0; i < prevState.length; i++) {
         if (i != index) {
-          res.push(JSON.parse(JSON.stringify(oldstate[i])))
+          const o = prevState[i] 
+          newState.push({title: o.title, link: o.link})
         }
       }
-      return res
+      return newState
     })
   }
 
   const addEsgInitiatives = () => {
-    props.setEsgInitiatives((oldstate) => {
-      var res = []
-      for (let i = 0; i < oldstate.length; i++) {
-        res.push(JSON.parse(JSON.stringify(oldstate[i])))
-      }
-      res.push({ title: "", link: "" })
-      return res
+    props.setEsgInitiatives((prevState) => {
+      return [...prevState, {title: '', link:''}]
     })
   }
 
   const addRecentDevelopments = () => {
-    props.setRecentDevelopments((oldstate) => {
-      var res = []
-      for (let i = 0; i < oldstate.length; i++) {
-        res.push(JSON.parse(JSON.stringify(oldstate[i])))
-      }
-      res.push({ title: "", link: "" })
-      return res
+    props.setRecentDevelopments((prevState) => {
+      return [...prevState, {title: '', link:''}]
     })
   }
 
+  const handleEsgTitleChange = (e, index) => {
+    props.setEsgInitiatives(prevState => {
+      const newState = [...prevState];
+      for (let i = 0; i < newState.length; i++) {
+        if (i === index) {
+          newState[i].title = e.target.value
+        }
+      }
+      return newState;
+    })
+  }
+
+  const handleEsgLinkChange = (e, index) => {
+    props.setEsgInitiatives(prevState => {
+      const newState = [...prevState];
+      for (let i = 0; i < newState.length; i++) {
+        if (i === index) {
+          newState[i].link = e.target.value
+        }
+      }
+      return newState;
+    })
+  }
 
   const inputSx = { width: 180 }
   const inputLx = { width: 460 }
@@ -115,6 +129,7 @@ const BankerForm = (props) => {
           <FormControl size='large'>
             <InputLabel id="industry-label">Industry</InputLabel>
             <Select
+              disabled={!props.isCreateNew}
               labelId="industry-label"
               id="industry-select"
               label="Industry"
@@ -128,7 +143,7 @@ const BankerForm = (props) => {
         <div>
           <FormControl>
             <InputLabel htmlFor="bloombergcode">Bloomberg Code</InputLabel>
-            <Input id="bloombergcode" aria-describedby="bloombergcode-helper" sx={inputSx} />
+            <Input id="bloombergcode" aria-describedby="bloombergcode-helper" disabled={!props.isCreateNew} sx={inputSx} />
             <FormHelperText id="bloombergcode-helper">Market Capitalisation</FormHelperText>
           </FormControl>
         </div>
@@ -136,18 +151,18 @@ const BankerForm = (props) => {
       <Grid>
         <h2>Recent Developments</h2>
         {props.recentDevelopments.map((item, index) => (
-          <Grid>
+          <Grid key={`recent${index}`}>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: '20px' }}>
               <div>
                 <FormControl>
-                  <InputLabel htmlFor="bloombergcode">Title</InputLabel>
-                  <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputLx} label="" />
+                  <InputLabel htmlFor={`recentTitle${index}`}>Title</InputLabel>
+                  <Input id={`recentTitle${index}`} aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputLx} label="" />
                 </FormControl>
               </div>
               <div>
                 <FormControl>
-                  <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
-                  <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputLx} label="" />
+                  <InputLabel htmlFor={`recentLink${index}`}>Resource link</InputLabel>
+                  <Input id={`recentLink${index}`} aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputLx} label="" />
                 </FormControl>
               </div>
               <Button onClick={() => removeRecentDevelopment(index)}>Delete</Button>
@@ -166,18 +181,18 @@ const BankerForm = (props) => {
         </FormControl>
         <h2>Key ESG Initiatives</h2>
         {props.esgInitiatives.map((item, index) => (
-          <Grid>
+          <Grid key={`esg${index}`}>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: '20px' }}>
               <div>
                 <FormControl>
-                  <InputLabel htmlFor="bloombergcode">Title</InputLabel>
-                  <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputLx} />
+                  <InputLabel htmlFor={`esgTitle${index}`}>Title</InputLabel>
+                  <Input key={`esgTitle${index}`} onChange={(e) => handleEsgTitleChange(e, index)} name={`esgTitle${index}`} id={`esgTitle${index}`} aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputLx} />
                 </FormControl>
               </div>
               <div>
                 <FormControl>
-                  <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
-                  <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputLx} />
+                  <InputLabel htmlFor={`esgLink${index}`}>Resource link</InputLabel>
+                  <Input key={`esgLink${index}`} onChange={(e) => handleEsgLinkChange(e, index)} name={`esgLink${index}`} id={`esgLink${index}`} aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputLx} />
                 </FormControl>
               </div>
               <Button onClick={() => removeEsgInitiatives(index)}>Delete</Button>
