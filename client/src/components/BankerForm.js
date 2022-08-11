@@ -141,7 +141,7 @@ const BankerForm = (props) => {
           </Grid>
         ))}
         <br/>
-        <Box textAlign='center'>
+        <Box textAlign='left'>
           <Button onClick={addRecentDevelopments}>+ New Recent Development</Button>
         </Box>
         <br/>
@@ -171,7 +171,7 @@ const BankerForm = (props) => {
           </Grid>
         ))}
         <br/>
-        <Box textAlign='center'>
+        <Box textAlign='left'>
         <Button onClick={addEsgInitiatives}>+ New ESG Initiatives</Button>  
         </Box>
         <br/>
@@ -184,9 +184,16 @@ const BankerForm = (props) => {
         </Grid>
         
         {!props.isCreateNew && (
-        <Box textAlign='right'>
-        <Button variant='contained' onClick={props.handleDelete}>Delete</Button>
-        <Button variant='contained'onClick={props.handleUpdate}>Update</Button>
+        <Box textAlign='left'>
+        <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '20px' }}>
+          <div>
+          <Button variant='contained' onClick={props.handleDelete}>Delete</Button>
+          </div>
+          <div>
+          &nbsp;&nbsp;&nbsp;
+          <Button variant='contained'onClick={props.handleUpdate}>Update</Button>
+          </div>
+        </div>
         </Box>)}
         {props.isCreateNew && (
           <Box textAlign='right'>
