@@ -96,21 +96,16 @@ const BankerForm = (props) => {
           <div
             style={{
               width: "100%",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: "20px",
-              background: "white",
-              padding: "1rem",
+              background:"white",
             }}>
             <div>
-              <div>
+              <div style={{ marginBottom:"20px" }}>
                 <FormControl>
                   {props.isCreateNew && <Input onChange={(e) => { props.setName(e.target.value) }} name="name" id="name" placeholder="Company Name" sx={inputLx} />}
                   {!props.isCreateNew && <Input value={props.name} disabled onChange={(e) => { props.setName(e.target.value) }} name="name" id="name" placeholder="Company Name" sx={inputLx} />}
                 </FormControl>
               </div>
-              <div>
+              <div style={{ marginBottom:"20px" }}>
                 <FormControl>
                   <Input name="esgScore" id="esgScore" placeholder="ESG Score" sx={inputSx} />
                 </FormControl>
@@ -121,11 +116,11 @@ const BankerForm = (props) => {
                 </InputLabel>
                 <Input onChange={(e) => { props.setTargetPrice(e.target.value) }} name="targetprice" id="targetprice" aria-describedby="targetprice-helper" sx={inputSx} />
                 <FormHelperText id="targetprice-helper">
-                  Target price for recommendation
+                
                 </FormHelperText>
               </FormControl>
             </div>
-            <div>
+            <div style={{ marginBottom:"20px" }}>
               <FormControl size="large">
                 <InputLabel id="recommendation-label">
                   Recommendation
@@ -144,7 +139,7 @@ const BankerForm = (props) => {
                 </Select>
               </FormControl>
             </div>
-            <div>
+            <div style={{ marginBottom:"20px" }}>
               <FormControl>
                 <InputLabel htmlFor="marketcap">
                   Market Capitalisation
@@ -152,11 +147,11 @@ const BankerForm = (props) => {
                 <Input onChange={(e) => { props.setMarketcap(e.target.value) }}
                   name="marketcap" id="marketcap" aria-describedby="marketcap-helper" sx={inputSx} />
                 <FormHelperText id="marketcap-helper">
-                  Market Capitalisation
+                
                 </FormHelperText>
               </FormControl>
             </div>
-            <div>
+            <div style={{ marginBottom:"20px" }}>
               <FormControl size="large">
                 <InputLabel id="industry-label">Industry</InputLabel>
                 {!props.isCreateNew && <Select
@@ -169,7 +164,7 @@ const BankerForm = (props) => {
                   label="Industry"
                   sx={{ width: 180 }}
                 >
-                  {/* {industries.map(item => (<MenuItem value={item}>{item}</MenuItem>))} */}
+                  {/* {industries.map(item => (<MenuItem value={item}>re{item}</MenuItem>))} */}
                   {industries.map(item => (<MenuItem value={item.name}>{item.name}</MenuItem>))}
                 </Select>}
                 {props.isCreateNew && <Select
@@ -186,7 +181,7 @@ const BankerForm = (props) => {
                 </Select>}
               </FormControl>
             </div>
-            <div>
+            <div style={{ marginBottom:"20px" }}>
               <FormControl>
                 <InputLabel htmlFor="bloombergcode">
                   Bloomberg Code
@@ -196,11 +191,11 @@ const BankerForm = (props) => {
                         {!props.isCreateNew && <Input value={props.bloombergCode} onChange={(e) => { props.setBloombergCode(e.target.value) }}
                           name="bloombergcode" id="bloombergcode" aria-describedby="bloombergcode-helper" disabled={!props.isCreateNew} sx={inputSx} />}                     
                 <FormHelperText id="bloombergcode-helper">
-                  Market Capitalisation
+              
                 </FormHelperText>
               </FormControl>
             </div>
-          </div>
+          </div >
           <Grid>
             <InputLabel>Company Description</InputLabel>
             <FormControl>
