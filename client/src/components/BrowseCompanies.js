@@ -1,4 +1,6 @@
+import { Button } from "@mui/material";
 import React, {Fragment, useState} from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import CompanyView from "./CompanyView";
 import SearchBar from './SearchBar';
 
@@ -46,10 +48,13 @@ const BrowseCompanies = (props) => {
     }
   };
 
+  let navigate = useNavigate()
+
    return (
       <Fragment>
          <div className="BrowseCompanies">
             <h1>Browse Companies</h1>
+            {props.isBanker && (<Button variant='containted' onClick={() => {navigate('/banker/create')}}>+ New Company</Button>)}
             <SearchBar  
             onChange={(e) => filterData(e)}
             />

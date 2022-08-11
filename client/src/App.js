@@ -7,6 +7,7 @@ import BrowseCompanies from "./components/BrowseCompanies";
 import CompanyDetailPage from "./components/CompanyDetailPage";
 import Navbar from "./components/Navbar";
 import EditCompany from "./components/EditCompany";
+import CreateCompany from "./components/CreateCompany";
 
 function App() {
   const [isBanker, setIsBanker] = useState(true)
@@ -25,9 +26,10 @@ function App() {
                      <Route exact path="about" element={<About />} />
                      <Route
                         path="companies"
-                        element={<BrowseCompanies />}
+                        element={<BrowseCompanies isBanker={isBanker}/>}
                      />
                      <Route exact path="details" element={<CompanyDetailPage isBanker={isBanker}/>} />
+                     <Route exact path="banker/create" element={<CreateCompany />} />
                      <Route exact path="banker/edit" element={<EditCompany />} />
                   </Routes>
                </section>
