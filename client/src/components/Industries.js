@@ -1,4 +1,4 @@
-import { Button, Typography, Card, CardContent, FormControl, Input, InputLabel, Grid } from "@mui/material";
+import { Button, Typography, Card, CardContent, FormControl, Input, InputLabel, Grid, Box } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import SearchBar from './SearchBar';
 import axios from 'axios';
@@ -66,19 +66,23 @@ const Industries = (props) => {
       {showForm && (
         <form onSubmit={handleCreate}>
           <Grid container>
+            <div className="addIndustryButton">
             <Grid item>
+              <div style={{ marginRight:'30px'}}>
               <FormControl>
-                <InputLabel htmlFor="industryName">Industry Name</InputLabel>
+                <InputLabel htmlFor="industryName" >Industry Name</InputLabel>
                 <Input name="industryName" id="industryName" sx={{ width: 180 }} />
               </FormControl>
+              </div>
             </Grid>
             <Grid item>
               <FormControl>
                 <InputLabel htmlFor="esgScore">Mean ESG Score</InputLabel>
-                <Input name="esgScore" id="esgScore" sx={{ width: 60 }} />
+                <Input name="esgScore" id="esgScore" sx={{ width: 180 }} />
               </FormControl>
             </Grid>
-            <Button onClick={() => setShowForm(false)}>Cancel</Button>
+            </div>
+            <Button onClick={() => setShowForm(false)} style={{color:"red"}}>Cancel</Button>
             <Button type='submit'>Add</Button>
           </Grid>
         </form>
