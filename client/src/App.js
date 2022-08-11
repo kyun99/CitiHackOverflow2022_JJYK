@@ -8,31 +8,47 @@ import CompanyDetailPage from "./components/CompanyDetailPage";
 import Navbar from "./components/Navbar";
 import EditCompany from "./components/EditCompany";
 import CreateCompany from "./components/CreateCompany";
-import Industries from "./components/Industries"
+import Industries from "./components/Industries";
 
 function App() {
-  const [isBanker, setIsBanker] = useState(true)
-  const setBanker = (val) =>{
-    setIsBanker(val)
-  }
+   const [isBanker, setIsBanker] = useState(true);
+   const setBanker = (val) => {
+      setIsBanker(val);
+   };
 
    return (
       <div className="App">
          <Fragment>
             <Router>
-               <Navbar className="navbar" isBanker={isBanker} setIsBanker={setBanker} />
-               <section className="container">
-               <Routes>
-                  <Route exact path="" element={<Home />} />
+               <Navbar
+                  className="navbar"
+                  isBanker={isBanker}
+                  setIsBanker={setBanker}
+               />
+               <section className="landing">
+                  <Routes>
+                     <Route exact path="" element={<Home />} />
                      <Route exact path="about" element={<About />} />
                      <Route exact path="industries" element={<Industries />} />
                      <Route
                         path="companies"
-                        element={<BrowseCompanies isBanker={isBanker}/>}
+                        element={<BrowseCompanies isBanker={isBanker} />}
                      />
-                     <Route exact path="details" element={<CompanyDetailPage isBanker={isBanker}/>} />
-                     <Route exact path="banker/create" element={<CreateCompany />} />
-                     <Route exact path="banker/edit" element={<EditCompany />} />
+                     <Route
+                        exact
+                        path="details"
+                        element={<CompanyDetailPage isBanker={isBanker} />}
+                     />
+                     <Route
+                        exact
+                        path="banker/create"
+                        element={<CreateCompany />}
+                     />
+                     <Route
+                        exact
+                        path="banker/edit"
+                        element={<EditCompany />}
+                     />
                   </Routes>
                </section>
             </Router>

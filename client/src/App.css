@@ -14,9 +14,28 @@
 .container {
    max-width: 1100px;
    margin: auto;
-   overflow: hidden;
-   margin-top: 6rem;
+   margin-top: 8rem;
    margin-bottom: 3rem;
+}
+
+.companyDetails {
+   background-color: rgba(255, 255, 255);
+   border-radius: 30px;
+   padding: 2rem 8rem;
+   color: #363434;
+}
+
+.companyDetails img {
+   margin-left: 10vw;
+}
+
+.companyDetails div {
+   margin-top: 2rem;
+}
+
+.industryCardContainer {
+   display: grid;
+   grid-template-columns: repeat(3, minmax(0px, 1fr));
 }
 
 .navbar {
@@ -67,14 +86,28 @@ a :hover {
    justify-content: left;
 }
 
-.about {
-   margin-left: -100px;
-   padding-left: -100px;
-   display: flex;
-   color:black;
+.btn-green {
+   display: inline-block;
+   background: var(--primary-color);
+   color: #333;
+   width: fit-content;
+   border-radius: 10px;
+   padding: 0.5rem 0.75rem;
+   font-size: 1rem;
+   border: none;
+   cursor: pointer;
+   transition: opacity 0.2s ease-in;
+   outline: none;
 }
 
 .addIndustryButton {
    display: flex;
    justify-content: space-between;
+}
+
+.aboutContent {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   margin-right: "3rem";
 }

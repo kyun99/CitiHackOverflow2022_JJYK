@@ -1,30 +1,89 @@
 import React from "react";
-import banner from "../images/Scroll Banner.png"
+import banner from "../images/Scroll Banner.png";
+import yunus from "../teamPics/yunus.jpg";
+import kayyun from "../teamPics/kayyun.jpeg";
+import justin from "../teamPics/justin.png";
+import jiexiang from "../teamPics/jiexiang.webp";
 
 const About = () => {
    return (
-      <div className="about">
-         <div className="bannerContainer">
-            <img src={banner} alt="banner" />
+      <div className="container">
+         <h1>Meet The Team</h1>
+
+         <div className="aboutContent">
+            <img
+               src={yunus}
+               style={{
+                  borderRadius: "50%",
+                  width: "250px",
+                  marginTop: "2rem",
+                  marginRight: "8rem",
+               }}
+            />
+            <div>
+               <h1 style={{ color: "white" }}>Yunus Ali</h1>
+               <h4 style={{ fontStyle: "italic", color: "white" }}>
+                  NUS Year 3 Information Systems
+               </h4>
+               <span></span>
+            </div>
          </div>
          <div className="aboutContent">
-            <h1>About MoneyPlant</h1>
-            <p>MoneyPlant is a new age financial tool to allow you to manage your wealth sustainably.</p>
-            <h1>How?</h1>
-            <p>By providing a platform to evaluate ESG scores of companies alongside traditional bottomline goals.</p>
-            <h1>What does ESG mean?</h1>
-            <p>ESG stands for Environment, social and governance. ESG stocks are company stocks that focus on sustainability and environmental concerns rather than just considering its bottom line.
-               These companies are profit driven but achieve their goals that impact the environment minimally. More companies are showcasing their ability to impact society and the environment 
-               positively by disclosing ESG metrics.
-            </p>
-            <p>
-               The metrics range from climate change, pollution and waste, social opportunities, business ethics, privacy and data security and more.
-            </p>
+            <img
+               src={justin}
+               style={{
+                  borderRadius: "50%",
+                  width: "250px",
+                  marginTop: "2rem",
+                  marginRight: "8rem",
+               }}
+            />
+            <div>
+               <h1 style={{ color: "white" }}>Justin</h1>
+               <h4 style={{ fontStyle: "italic", color: "white" }}>
+                  NUS Year 3 Computer Science
+               </h4>
+               <span></span>
+            </div>
+         </div>
+         <div className="aboutContent">
+            <img
+               src={kayyun}
+               style={{
+                  borderRadius: "50%",
+                  width: "250px",
+                  marginTop: "2rem",
+                  marginRight: "8rem",
+               }}
+            />
+            <div>
+               <h1 style={{ color: "white" }}>Kayyun</h1>
+               <h4 style={{ fontStyle: "italic", color: "white" }}>
+                  NUS Year 3 Computer Science
+               </h4>
+               <span></span>
+            </div>
+         </div>
+         <div className="aboutContent">
+            <img
+               src={jiexiang}
+               style={{
+                  borderRadius: "50%",
+                  width: "250px",
+                  marginTop: "2rem",
+                  marginRight: "8rem",
+               }}
+            />
+            <div>
+               <h1 style={{ color: "white" }}>Jie Xiang</h1>
+               <h4 style={{ fontStyle: "italic", color: "white" }}>
+                  NUS Year 3 Business Analytics
+               </h4>
+               <span></span>
+            </div>
          </div>
       </div>
    );
 };
-
-
 
 export default About;

@@ -26,7 +26,6 @@ const Home = () => {
                      View Companies
                   </Link>
                </div>
-               <table>Recent Developments</table>
             </div>
          </div>
       </section>
