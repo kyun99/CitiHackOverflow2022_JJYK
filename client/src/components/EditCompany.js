@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import BankerForm from "./BankerForm";
 import { useLocation } from "react-router-dom"
+import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 
 const EditCompany = (props) => {
@@ -33,8 +35,16 @@ const EditCompany = (props) => {
   const handleUpdate = () => {
 
   }
+  
   const handleDelete = () => {
-
+    axios.delete(`http://127.0.0.1:8000/moneyplant/company/${bloombergCode}`)
+    .then(resp => {
+      console.log(resp.status)
+      (<Navigate to="/companies" replace={true}/>)
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
 

@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import BankerForm from "./BankerForm";
 import axios from 'axios';
+import { Navigate } from "react-router-dom";
 
 const CreateCompany = (props) => {
   const [recentDevelopments, setRecentDevelopments] = useState([])
@@ -29,7 +30,7 @@ const CreateCompany = (props) => {
     axios.post('http://127.0.0.1:8000/moneyplant/company/', data)
     .then(resp => {
       console.log(resp.status)
-
+      (<Navigate to="/companies" replace={true}/>)
     })
     .catch(err => {
       console.log(err)
