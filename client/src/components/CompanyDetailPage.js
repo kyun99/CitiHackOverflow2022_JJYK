@@ -13,17 +13,34 @@ const CompanyDetailPage = (props) => {
    const editLink = `/banker/edit?code=${bloombergCode}`
 
    const [esgInitiatives, setEsgInitiatives] = useState([
-    {title: "Carbon emissions reduced by 7.3% for 1H2022", resource:'somelink', upvote: 17, downvote: 2},
-    {title: "Workplace diversity increased by 40% for 2022", resource:'somelink', upvote: 38, downvote: 130},
-    {title: "MOU signed to accelerate switch to electric vehicles by 2030", resource:'somelink', upvote: 204, downvote:43},
+    {id: 0, title: "Carbon emissions reduced by 7.3% for 1H2022", resource:'somelink', upVote: 17, downVote: 2},
+    {id: 1, title: "Workplace diversity increased by 40% for 2022", resource:'somelink', upVote: 38, downVote: 130},
+    {id: 2, title: "MOU signed to accelerate switch to electric vehicles by 2030", resource:'somelink', upVote: 204, downVote:43},
    ])
 
    const upVote = (id) => {
-
+      console.log(esgInitiatives[id])
+      setEsgInitiatives(prevState => {
+        const newState = [...prevState];
+        for (let i = 0; i < newState.length; i++) {
+          if (newState[i].id === id) {
+            newState[i].upVote++;
+          }
+        }
+        return newState;
+      })
    }
 
    const downVote = (id) => {
-
+    setEsgInitiatives(prevState => {
+      const newState = [...prevState];
+      for (let i = 0; i < newState.length; i++) {
+        if (newState[i].id === id) {
+          newState[i].downVote++;
+        }
+      }
+      return newState;
+    })
   }
 
    
@@ -79,9 +96,9 @@ const CompanyDetailPage = (props) => {
                content={esgInitiatives.map(item => (
                <Grid>
                 <a href={item.resource}>{item.title}</a>
-                {item.upvote}
+                {item.upVote}
                 <Button onClick={() => upVote(item.id)}>Upvote</Button>
-                {item.downvote}
+                {item.downVote}
                <Button onClick={() => downVote(item.id)}>Downvote</Button>
                </Grid>)) }
             />
