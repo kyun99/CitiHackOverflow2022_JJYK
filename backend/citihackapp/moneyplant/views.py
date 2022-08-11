@@ -66,12 +66,6 @@ def company_list(request):
     """
     List all industries and create industry
     """
-    name = request.data["industry"]
-    try:
-        industry = Industry.objects.get(name=name)
-    except industry.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
     if request.method == 'GET':
         companies = Company.objects.all()
         print(companies)
@@ -79,6 +73,12 @@ def company_list(request):
         return Response(serializer.data)
     
     if request.method == 'POST':
+        name = request.data["industry"]
+        try:
+            industry = Industry.objects.get(name=name)
+        except industry.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
         serializer = CompanySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -91,12 +91,12 @@ def company_detail(request, bloomberg_code):
     Retrieve, update or delete a code Industry.
     """
     try:
-        company = Company.objects.get(bloomberg_code=bloomberg_code)
-    except company.DoesNotExist:
+        companies = Company.objects.get(bloomberg_code=bloomberg_code)
+    except companies.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = CompanySerializer(company)
+        serializer = CompanySerializer(companies)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
@@ -107,22 +107,23 @@ def company_detail(request, bloomberg_code):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        company.delete()
+        companies.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET','POST'])
-def company_esg_list(request):
+def esg_list(request):
     """
     List all industries and create industry
     """
-    name = request.data["company"]
-    try:
-       company = Company.objects.get(name=name)
-    except company.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    # name = request.data["company"]
+    # try:
+    #    company = Company.objects.get(name=name)
+    # except company.DoesNotExist:
+    #     return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        eSGInitiatives = ESGInitiatives.objects.filter(company=request.data["company"])
+        # eSGInitiatives = ESGInitiatives.objects.filter(company=request.data["company"])
+        eSGInitiatives = ESGInitiatives.objects.all()
         serializer = ESGInitiativesSerializer(eSGInitiatives,many=True)
         return Response(serializer.data)
     
@@ -134,7 +135,7 @@ def company_esg_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def company_esg_detail(request, pk):
+def esg_detail(request, pk):
     """
     Retrieve, update or delete a code Industry.
     """
@@ -157,3 +158,16 @@ def company_esg_detail(request, pk):
     elif request.method == 'DELETE':
         eSGInitiatives.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def company_esg_detail(request, bloomberg_code):
+    try:
+        company = Company.objects.get(bloomberg_code=bloomberg_code)
+    except company.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        eSGInitiatives = ESGInitiatives.objects.filter(company=company.name)
+        # eSGInitiatives = ESGInitiatives.objects.all()
+        serializer = ESGInitiativesSerializer(eSGInitiatives,many=True)
+        return Response(serializer.data)
