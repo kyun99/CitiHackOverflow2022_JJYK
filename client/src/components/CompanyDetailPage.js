@@ -55,8 +55,8 @@ const CompanyDetailPage = (props) => {
             <h1 className="name">{companyName}</h1> 
             </Grid>
             <Grid item >
-            <div style={{ position:"relative", left:"-410px"}}>
-            { props.isBanker && <Button variant='contained'>
+            <div style={{ position:"relative", left:"-375px"}}>
+            { props.isBanker && <Button variant='secondary'>
               <a href={editLink} >Edit Analysis</a>
               </Button>}
             </div>
