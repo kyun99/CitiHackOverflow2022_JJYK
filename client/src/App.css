@@ -15,7 +15,6 @@
    max-width: 1100px;
    margin: auto;
    overflow: hidden;
-   padding: 0 2rem;
    margin-top: 6rem;
    margin-bottom: 3rem;
 }
@@ -31,7 +30,11 @@
    position: fixed;
    width: 100%;
    top: 0;
+<<<<<<< HEAD
+   z-index: 10;
+=======
    z-index: 9999999999;
+>>>>>>> 2e9fa9264f5ab4b2e00bc29fca1af896442b35d1
 }
 
 .navbar a {

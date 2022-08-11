@@ -13,15 +13,15 @@ function App() {
   const setBanker = (val) =>{
     setIsBanker(val)
   }
-  
+
    return (
       <div className="App">
          <Fragment>
             <Router>
                <Navbar className="navbar" isBanker={isBanker} setIsBanker={setBanker} />
                <section className="container">
-                  <Routes>
-                     <Route exact path="" element={<Home />} />
+               <Routes>
+                  <Route exact path="" element={<Home />} />
                      <Route exact path="about" element={<About />} />
                      <Route
                         path="companies"
