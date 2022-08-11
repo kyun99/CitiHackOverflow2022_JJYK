@@ -1,15 +1,28 @@
+import { Button, Grid } from "@mui/material";
 import React, { Fragment } from "react";
 import DetailImage from "./DetailImage";
 import DetailText from './DetailText';
 
-const CompanyDetailPage = () => {
+const CompanyDetailPage = (props) => {
    const CompanyName = "Wilmar International"
+   const bloombergCode = "REALCODE"
+   const editLink = `/banker/edit?code=${bloombergCode}`
+
    //Example information borrowed from DBS market insights page (open for viewing)
    return (
       <div>
          <Fragment>
          <div style={{fontSize:"30px"}}>
-            <h1 className="name">{CompanyName}</h1>
+          <Grid container>
+            <Grid item>
+            <h1 className="name">{CompanyName}</h1> 
+            </Grid>
+            <Grid item textAlign='right'>
+            { props.isBanker && <Button variant='contained' >
+              <a href={editLink}>Edit Analysis</a>
+              </Button>}
+            </Grid>
+          </Grid>
          </div>
             <DetailImage 
                title="Quick View"

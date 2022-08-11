@@ -1,5 +1,5 @@
 import "./App.css";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import About from "./components/About";
 import Home from "./components/Home";
@@ -9,21 +9,25 @@ import Navbar from "./components/Navbar";
 import EditCompany from "./components/EditCompany";
 
 function App() {
+  const [isBanker, setIsBanker] = useState(true)
+  const setBanker = (val) =>{
+    setIsBanker(val)
+  }
+  
    return (
       <div className="App">
          <Fragment>
             <Router>
-               <Navbar className="navbar"/>
+               <Navbar className="navbar" isBanker={isBanker} setIsBanker={setBanker} />
                <section className="container">
                   <Routes>
                      <Route exact path="" element={<Home />} />
                      <Route exact path="about" element={<About />} />
                      <Route
-                        exact
                         path="companies"
                         element={<BrowseCompanies />}
                      />
-                     <Route exact path="details" element={<CompanyDetailPage />} />
+                     <Route exact path="details" element={<CompanyDetailPage isBanker={isBanker}/>} />
                      <Route exact path="banker/edit" element={<EditCompany />} />
                   </Routes>
                </section>

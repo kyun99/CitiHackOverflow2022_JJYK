@@ -21,7 +21,7 @@ export default function BasicCard(props) {
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {props.header}
+          Company Name
         </Typography>
         <Typography variant="h5" component="div">
           {props.companyname}

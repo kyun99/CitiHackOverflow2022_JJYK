@@ -4,7 +4,6 @@ import { FormControl, Input, FormHelperText, Box, Button, Select, MenuItem, Grid
 
 
 
-
 const targetPrice = 1.0
 const recommendation = "Buy"
 const marketCap = "1.4B"
@@ -13,6 +12,7 @@ const profile = "Yangzijiang is one of the largest, most efficient, and profitab
 
 
 const EditCompany = () => {
+  const industries = ['Agriculture', 'Construction', 'Logistics', 'Marketing','Mining', 'Retail', 'Robotics', 'Technology', ]
   const [recentDevelopments, setRecentDevelopments] = useState([
     { title: "Yangzijiang Shipbuilding Holdings Ltd: A good set of 1H22 results", link: "https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08082022.xml" },
     { title: "Yangzijiang Shipbuilding: Trading at unwarranted deep discount to peers", link: "https://www.dbs.com.sg/private-banking/aics/templatedata/article/recentdevelopment/data/en/DBSV/082022/YZJSGD_SP_08042022.xml" }
@@ -56,7 +56,6 @@ const EditCompany = () => {
         res.push(JSON.parse(JSON.stringify(oldstate[i])))
       }
       res.push({ title: "", link: "" })
-      console.log(res)
       return res
     })
   }
@@ -68,7 +67,6 @@ const EditCompany = () => {
         res.push(JSON.parse(JSON.stringify(oldstate[i])))
       }
       res.push({ title: "", link: "" })
-      console.log(res)
       return res
     })
   }
@@ -76,7 +74,8 @@ const EditCompany = () => {
   const handleSubmit = () => {
 
   }
-  const inputSx = { width: 200 }
+  const inputSx = { width: 180 }
+  const inputLx = { width: 460 }
 
 
   useEffect(() => {
@@ -90,102 +89,124 @@ const EditCompany = () => {
   return <Fragment>
     <h2>Edit Company Details</h2>
     <form onSubmit={handleSubmit} align='left' className="form1">
-      <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginBottom:'20px'}}>
-      <div>
-      <FormControl>
-        <InputLabel htmlFor="targetprice">Target Price</InputLabel>
-        <Input id="targetprice" aria-describedby="targetprice-helper" sx={inputSx} />
-        <FormHelperText id="targetprice-helper">Target price for recommendation</FormHelperText>
-      </FormControl>
-      </div>
-      <div>
-      <FormControl size='large'>
-        <InputLabel id="recommendation-label">Recommendation</InputLabel>
-        <Select
-          labelId="recommendation-label"
-          id="recommendation-select"
-          label="Recommendation"
-          sx={inputSx}
-        >
-          <MenuItem value={10}>Buy</MenuItem>
-          <MenuItem value={20}>Sell</MenuItem>
-          <MenuItem value={30}>Hold</MenuItem>
-        </Select>
-      </FormControl>
-      </div>
-      <div>
-      <FormControl>
-        <InputLabel htmlFor="marketcap">Market Capitalisation</InputLabel>
-        <Input id="marketcap" aria-describedby="marketcap-helper" sx={inputSx} />
-        <FormHelperText id="marketcap-helper">Market Capitalisation</FormHelperText>
-      </FormControl>
-      </div>
-      <div>
-      <FormControl>
-        <InputLabel htmlFor="bloombergcode">Bloomberg Code</InputLabel>
-        <Input id="bloombergcode" aria-describedby="bloombergcode-helper" sx={inputSx} />
-        <FormHelperText id="bloombergcode-helper">Market Capitalisation</FormHelperText>
-      </FormControl>
-      </div>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: '20px' }}>
+        <div>
+          <FormControl>
+            <InputLabel htmlFor="targetprice">Target Price</InputLabel>
+            <Input id="targetprice" aria-describedby="targetprice-helper" sx={inputSx} />
+            <FormHelperText id="targetprice-helper">Target price for recommendation</FormHelperText>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl size='large'>
+            <InputLabel id="recommendation-label">Recommendation</InputLabel>
+            <Select
+              labelId="recommendation-label"
+              id="recommendation-select"
+              label="Recommendation"
+              sx={{ width: 180 }}
+            >
+              <MenuItem value={10}>Buy</MenuItem>
+              <MenuItem value={20}>Sell</MenuItem>
+              <MenuItem value={30}>Hold</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl>
+            <InputLabel htmlFor="marketcap">Market Capitalisation</InputLabel>
+            <Input id="marketcap" aria-describedby="marketcap-helper" sx={inputSx} />
+            <FormHelperText id="marketcap-helper">Market Capitalisation</FormHelperText>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl size='large'>
+            <InputLabel id="industry-label">Industry</InputLabel>
+            <Select
+              labelId="industry-label"
+              id="industry-select"
+              label="Industry"
+              sx={{ width: 180 }}
+            >
+              {industries.map(item => (<MenuItem value={item}>{item}</MenuItem>))}
+            </Select>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl>
+            <InputLabel htmlFor="bloombergcode">Bloomberg Code</InputLabel>
+            <Input id="bloombergcode" aria-describedby="bloombergcode-helper" sx={inputSx} />
+            <FormHelperText id="bloombergcode-helper">Market Capitalisation</FormHelperText>
+          </FormControl>
+        </div>
       </div>
       <Grid>
         <h2>Recent Developments</h2>
         {recentDevelopments.map((item, index) => (
           <Grid>
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginBottom:'20px'}}>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: '20px' }}>
               <div>
-              <FormControl>
-                <InputLabel htmlFor="bloombergcode">Title</InputLabel>
-                <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputSx} label="" />
-              </FormControl>
+                <FormControl>
+                  <InputLabel htmlFor="bloombergcode">Title</InputLabel>
+                  <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputLx} label="" />
+                </FormControl>
               </div>
               <div>
-              <FormControl>
-                <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
-                <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputSx} label="" />
-              </FormControl>
+                <FormControl>
+                  <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
+                  <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputLx} label="" />
+                </FormControl>
               </div>
               <Button onClick={() => removeRecentDevelopment(index)}>Delete</Button>
             </div>
           </Grid>
         ))}
-        <Grid>
+        <br/>
+        <Box textAlign='center'>
           <Button onClick={addRecentDevelopments}>+ New Recent Development</Button>
-        </Grid>
+        </Box>
+        <br/>
+        <br/>
+        <InputLabel>Summary of Recent Developments</InputLabel>
         <FormControl>
-              {/* <InputLabel htmlFor="summaryrecentdevelopments"></InputLabel> */}
-              <TextareaAutosize id="summaryrecentdevelopments" placeholder="Summary Of Recent Developments" style={{'height':'80px', 'width':'400px'}}/>
+          <TextareaAutosize id="summaryrecentdevelopments" placeholder="Give a summary of key recent developments and how it impacts the recommendation" style={{ 'height': '120px', 'width': '600px' }} />
         </FormControl>
         <h2>Key ESG Initiatives</h2>
         {esgInitiatives.map((item, index) => (
           <Grid>
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginBottom:'20px'}}>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: '20px' }}>
               <div>
-              <FormControl>
-                <InputLabel htmlFor="bloombergcode">Title</InputLabel>
-                <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputSx} />
-              </FormControl>
+                <FormControl>
+                  <InputLabel htmlFor="bloombergcode">Title</InputLabel>
+                  <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.title} sx={inputLx} />
+                </FormControl>
               </div>
               <div>
-              <FormControl>
-                <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
-                <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputSx} />
-              </FormControl>
+                <FormControl>
+                  <InputLabel htmlFor="bloombergcode">Resource link</InputLabel>
+                  <Input id="bloombergcode" aria-describedby="bloombergcode-helper" defaultValue={item.link} sx={inputLx} />
+                </FormControl>
               </div>
               <Button onClick={() => removeEsgInitiatives(index)}>Delete</Button>
             </div>
           </Grid>
         ))}
+        <br/>
+        <Box textAlign='center'>
+        <Button onClick={addEsgInitiatives}>+ New ESG Initiatives</Button>  
+        </Box>
+        <br/>
+        <br/>
         <Grid>
-          <Button onClick={addEsgInitiatives}>+ New ESG Initiatives</Button>
+          <InputLabel>Summary of ESG Initiatives</InputLabel>
+          <FormControl>
+            <TextareaAutosize id="summaryesginitiatives" placeholder="Give a summary of key ESG initiatives and how it impacts the recommendation" style={{ 'height': '120px', 'width': '600px' }} />
+          </FormControl>
         </Grid>
-        <Grid>
-        <FormControl>
-              {/* <InputLabel htmlFor="summaryrecentdevelopments"></InputLabel> */}
-              <TextareaAutosize id="summaryesginitiatives" placeholder="Summary Of ESG Initiatives" style={{'height':'80px', 'width':'400px'}}/>
-        </FormControl>
-        </Grid>
-        <Button>Update</Button>
+        <Box textAlign='right'>
+        <Button variant='contained'>Update</Button>
+        </Box>
+        
       </Grid>
     </form>
   </Fragment>
