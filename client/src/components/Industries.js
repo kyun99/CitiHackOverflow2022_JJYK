@@ -177,7 +177,7 @@ const Industries = (props) => {
                      </CardContent>
                      <Button
                         variant="contained"
-                        onClick={() => handleDelete(item.id)}>
+                        onClick={() => handleDelete(item.name)}>
                         Remove
                      </Button>
                   </Card>
