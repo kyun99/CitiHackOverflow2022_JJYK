@@ -37,12 +37,11 @@ const BrowseCompanies = (props) => {
 
   const filterData = (e) => {
     var  q = e.target.value
-    console.log(q)
     if (!q) {
       setFilteredCompanies(companies)
     } else {
       const temp = companies.filter((d) => {
-        return d.companyname.toLowerCase().includes(q) || d.industry.toLowerCase().includes(q)
+        return d.companyname.toLowerCase().includes(q.toLowerCase()) || d.industry.toLowerCase().includes(q.toLowerCase())
         });
       setFilteredCompanies(temp)
     }
