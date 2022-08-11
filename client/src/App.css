@@ -74,3 +74,7 @@ a :hover {
    color:black;
 }
 
+.addIndustryButton {
+   display: flex;
+   justify-content: space-between;
+}
