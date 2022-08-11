@@ -9,7 +9,7 @@ class ESGInitiativesSerializer(serializers.ModelSerializer):
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        fields = ['name','description','esgInitiatives','industry']
+        fields = ['name','description','industry','target_price','recommendation','market_cap','bloomberg_code']
 
 class IndustrySerializer(serializers.ModelSerializer):
     # companies = CompanySerializer(many=True)
