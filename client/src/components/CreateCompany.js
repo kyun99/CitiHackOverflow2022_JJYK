@@ -15,6 +15,7 @@ const CreateCompany = (props) => {
   const [recommendation, setRecommendation] = useState()
   const [targetprice, setTargetPrice] = useState()
   
+  const [created, setCreated] = useState(false)
 
   const handleCreate = (e) => {
     e.preventDefault();
@@ -30,7 +31,7 @@ const CreateCompany = (props) => {
     axios.post('http://127.0.0.1:8000/moneyplant/company/', data)
     .then(resp => {
       console.log(resp.status)
-      (<Navigate to="/companies" replace={true}/>)
+      setCreated(prev => true)
     })
     .catch(err => {
       console.log(err)
@@ -56,6 +57,7 @@ const CreateCompany = (props) => {
 
       isCreateNew={true}
     />
+    {(created && <Navigate to="/companies" replace={true}/>)}
   </Fragment>
 
 }

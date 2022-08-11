@@ -91,7 +91,8 @@ const BankerForm = (props) => {
         <br />
         <Grid>
           <FormControl>
-            <Input onChange={(e)=>{props.setName(e.target.value)}} name="name" id="name" placeholder="Company Name" sx={inputLx} />
+            {props.isCreateNew && <Input onChange={(e) => { props.setName(e.target.value) }} name="name" id="name" placeholder="Company Name" sx={inputLx} />}
+            {!props.isCreateNew && <Input value={props.name} disabled onChange={(e) => { props.setName(e.target.value) }} name="name" id="name" placeholder="Company Name" sx={inputLx} />}
           </FormControl>
         </Grid>
         <br />
@@ -99,7 +100,7 @@ const BankerForm = (props) => {
           <div>
             <FormControl>
               <InputLabel htmlFor="targetprice">Target Price</InputLabel>
-              <Input onChange={(e)=>{props.setTargetPrice(e.target.value)}} name="targetprice" id="targetprice" aria-describedby="targetprice-helper" sx={inputSx} />
+              <Input onChange={(e) => { props.setTargetPrice(e.target.value) }} name="targetprice" id="targetprice" aria-describedby="targetprice-helper" sx={inputSx} />
               <FormHelperText id="targetprice-helper">Target price for recommendation</FormHelperText>
             </FormControl>
           </div>
@@ -107,7 +108,7 @@ const BankerForm = (props) => {
             <FormControl size='large'>
               <InputLabel id="recommendation-label">Recommendation</InputLabel>
               <Select
-                onChange={(e)=>{props.setRecommendation(e.target.value)}}
+                onChange={(e) => { props.setRecommendation(e.target.value) }}
                 name="recommendation"
                 labelId="recommendation-label"
                 id="recommendation-select"
@@ -118,21 +119,23 @@ const BankerForm = (props) => {
                 <MenuItem value={"Sell"}>Sell</MenuItem>
                 <MenuItem value={"Hold"}>Hold</MenuItem>
               </Select>
+
             </FormControl>
           </div>
           <div>
             <FormControl>
               <InputLabel htmlFor="marketcap">Market Capitalisation</InputLabel>
-              <Input onChange={(e)=>{props.setMarketcap(e.target.value)}}
-name="marketcap" id="marketcap" aria-describedby="marketcap-helper" sx={inputSx} />
+              <Input onChange={(e) => { props.setMarketcap(e.target.value) }}
+                name="marketcap" id="marketcap" aria-describedby="marketcap-helper" sx={inputSx} />
               <FormHelperText id="marketcap-helper">Market Capitalisation</FormHelperText>
             </FormControl>
           </div>
           <div>
             <FormControl size='large'>
               <InputLabel id="industry-label">Industry</InputLabel>
-              <Select
-                onChange={(e)=>{props.setIndustry(e.target.value)}}
+              {!props.isCreateNew && <Select
+                value={props.industry}
+                onChange={(e) => { props.setIndustry(e.target.value) }}
                 name="industry"
                 disabled={!props.isCreateNew}
                 labelId="industry-label"
@@ -142,14 +145,28 @@ name="marketcap" id="marketcap" aria-describedby="marketcap-helper" sx={inputSx}
               >
                 {/* {industries.map(item => (<MenuItem value={item}>{item}</MenuItem>))} */}
                 {industries.map(item => (<MenuItem value={item.name}>{item.name}</MenuItem>))}
-              </Select>
+              </Select>}
+              {props.isCreateNew && <Select
+                onChange={(e) => { props.setIndustry(e.target.value) }}
+                name="industry"
+                disabled={!props.isCreateNew}
+                labelId="industry-label"
+                id="industry-select"
+                label="Industry"
+                sx={{ width: 180 }}
+              >
+                {/* {industries.map(item => (<MenuItem value={item}>{item}</MenuItem>))} */}
+                {industries.map(item => (<MenuItem value={item.name}>{item.name}</MenuItem>))}
+              </Select>}
             </FormControl>
           </div>
           <div>
             <FormControl>
               <InputLabel htmlFor="bloombergcode">Bloomberg Code</InputLabel>
-              <Input                 onChange={(e)=>{props.setBloombergCode(e.target.value)}}
-name="bloombergcode" id="bloombergcode" aria-describedby="bloombergcode-helper" disabled={!props.isCreateNew} sx={inputSx} />
+              {props.isCreateNew && <Input onChange={(e) => { props.setBloombergCode(e.target.value) }}
+                name="bloombergcode" id="bloombergcode" aria-describedby="bloombergcode-helper" disabled={!props.isCreateNew} sx={inputSx} />}
+              {!props.isCreateNew && <Input value={props.bloombergCode} onChange={(e) => { props.setBloombergCode(e.target.value) }}
+                name="bloombergcode" id="bloombergcode" aria-describedby="bloombergcode-helper" disabled={!props.isCreateNew} sx={inputSx} />}
               <FormHelperText id="bloombergcode-helper">Market Capitalisation</FormHelperText>
             </FormControl>
           </div>
@@ -157,7 +174,8 @@ name="bloombergcode" id="bloombergcode" aria-describedby="bloombergcode-helper" 
         <Grid>
           <InputLabel>Company Description</InputLabel>
           <FormControl>
-            <TextareaAutosize onChange={(e)=>{props.setDescription(e.target.value)}} name="description" id="description" placeholder="Give a brief description on the company" style={{ 'height': '120px', 'width': '600px' }} />
+            {props.isCreateNew && <TextareaAutosize onChange={(e) => { props.setDescription(e.target.value) }} name="description" id="description" placeholder="Give a brief description on the company" style={{ 'height': '120px', 'width': '600px' }} />}
+            {!props.isCreateNew && <TextareaAutosize value={props.description} onChange={(e) => { props.setDescription(e.target.value) }} name="description" id="description" placeholder="Give a brief description on the company" style={{ 'height': '120px', 'width': '600px' }} />}
           </FormControl>
         </Grid>
         <Grid>
