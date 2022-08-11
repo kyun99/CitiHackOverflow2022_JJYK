@@ -18,9 +18,11 @@ const CompanyDetailPage = (props) => {
             <h1 className="name">{CompanyName}</h1> 
             </Grid>
             <Grid item textAlign='right'>
-            { props.isBanker && <Button variant='contained' >
-              <a href={editLink}>Edit Analysis</a>
+            <div style={{ display:"flex" }}>
+            { props.isBanker && <Button variant='contained' style={{marginLeft:"auto"}}>
+              <a href={editLink} >Edit Analysis</a>
               </Button>}
+            </div>
             </Grid>
           </Grid>
          </div>
