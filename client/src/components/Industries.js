@@ -53,11 +53,24 @@ const Industries = (props) => {
          });
    };
 
+<<<<<<< HEAD
    useEffect(() => {
       getIndustries();
    }, []);
 
    const handleDelete = (id) => {};
+=======
+  const handleDelete = (name) => {
+    axios.delete(`http://127.0.0.1:8000/moneyplant/industry/${name}`)
+    .then(resp => {
+      console.log(resp)
+      getIndustries()
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+>>>>>>> 0ea8e57240e7e0444234728c760c039f9c7f42e0
 
    const handleCreate = (e) => {
       e.preventDefault();
@@ -94,6 +107,7 @@ const Industries = (props) => {
                   + Add Industry
                </button>
             </div>
+<<<<<<< HEAD
             <SearchBar onChange={(e) => filterData(e)} />
             {showForm && (
                <form
@@ -176,5 +190,38 @@ const Industries = (props) => {
       </Fragment>
    );
 };
+=======
+            <Button onClick={() => setShowForm(false)} style={{color:"red"}}>Cancel</Button>
+            <Button type='submit'>Add</Button>
+          </Grid>
+        </form>
+
+      )}
+      <Button onClick={() => setShowForm(true)}>+ Add Industry</Button>
+      {filteredIndustries.map(item => (
+        <Card sx={{ minWidth: 275 }}>
+          <CardContent>
+            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              Industry Name
+            </Typography>
+            <Typography variant="h5" component="div">
+              {item.name}
+            </Typography>
+            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              ESG Score
+            </Typography>
+            <Typography variant="h5" component="div">
+              {item.esgScore}
+            </Typography>
+          </CardContent>
+          <Button variant='contained' onClick={() => handleDelete(item.name)}>Remove</Button>
+        </Card>
+      ))}
+
+    </div>
+  </Fragment>
+
+}
+>>>>>>> 0ea8e57240e7e0444234728c760c039f9c7f42e0
 
 export default Industries;

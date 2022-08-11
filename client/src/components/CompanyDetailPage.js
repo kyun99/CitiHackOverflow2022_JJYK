@@ -2,6 +2,7 @@ import { Button, Card, Grid, Typography } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DetailImage from "./DetailImage";
+<<<<<<< HEAD
 import DetailText from "./DetailText";
 import prevClosePrice from "../images/prevClosePrice.jpg";
 import QuickView from "../images/QuickView.jpg";
@@ -14,6 +15,24 @@ const CompanyDetailPage = (props) => {
    const bloombergCode = params.get("code");
    const profile = props.profile;
    const editLink = `/banker/edit?code=${bloombergCode}`;
+=======
+import DetailText from './DetailText';
+import axios from "axios";
+
+
+const CompanyDetailPage = (props) => {
+   const location = useLocation()
+   const params = new URLSearchParams(location.search)
+   const bloombergCode =  params.get('code');
+   const editLink = `/banker/edit?code=${bloombergCode}`
+>>>>>>> 0ea8e57240e7e0444234728c760c039f9c7f42e0
+
+  const [companyName, setName] = useState("Yangzijiang Shipbuilding Holdings Ltd")
+  const [industry, setIndustry] = useState("Logistics")
+  const [profile, setDescription] = useState("Yangzijiang is one of the largest, most efficient, and profitable shipbuilders in China. It has moved up the value chain to produce ultra-large containerships and very large bulk carriers, as well as LNG vessels.")
+  const [marketcap, setMarketcap] = useState("1.4B")
+  const [recommendation, setRecommendation] = useState("Buy")
+  const [targetprice, setTargetPrice] = useState("1.14")
 
    const [esgInitiatives, setEsgInitiatives] = useState([
       {
@@ -38,6 +57,27 @@ const CompanyDetailPage = (props) => {
          downVote: 43,
       },
    ]);
+
+
+   useEffect(() => {
+    axios.get(`http://127.0.0.1:8000/moneyplant/company/${bloombergCode}`)
+      .then(resp => {
+        console.log(resp.status)
+        console.log(resp.data)
+        const data = resp.data
+
+        setDescription(prev => (data.description))
+        setIndustry(prev => data.industry)
+        setMarketcap(prev => data.market_cap)
+        setName(prev => data.name)
+        setRecommendation(prev => data.recommendation)
+        setTargetPrice(prev => data.target_price)
+
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  })
 
    const upVote = (id) => {
       setEsgInitiatives((prevState) => {
@@ -67,6 +107,7 @@ const CompanyDetailPage = (props) => {
    return (
       <div className="container">
          <Fragment>
+<<<<<<< HEAD
             <div style={{ fontSize: "30px" }}>
                <Grid container>
                   <Grid item>
@@ -127,6 +168,18 @@ const CompanyDetailPage = (props) => {
                      ))}
                   </div>
                </div>
+=======
+         <div style={{fontSize:"30px"}}>
+          <Grid container>
+            <Grid item>
+            <h1 className="name">{companyName}</h1> 
+            </Grid>
+            <Grid item >
+            <div style={{ position:"relative", left:"-180%"}}>
+            { props.isBanker && <Button variant='secondary'>
+              <a href={editLink} >Edit Analysis</a>
+              </Button>}
+>>>>>>> 0ea8e57240e7e0444234728c760c039f9c7f42e0
             </div>
          </Fragment>
       </div>
