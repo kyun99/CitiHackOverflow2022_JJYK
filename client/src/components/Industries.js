@@ -1,6 +1,7 @@
 import { Button, Typography, Card, CardContent, FormControl, Input, InputLabel, Grid } from "@mui/material";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import SearchBar from './SearchBar';
+import axios from 'axios';
 
 
 const Industries = (props) => {
@@ -20,13 +21,39 @@ const Industries = (props) => {
     }
   };
 
+  const getIndustries = () => {
+    axios.get('http://127.0.0.1:8000/moneyplant/industry/')
+    .then(resp => {
+      console.log(resp.status)
+      console.log(resp.data)
+      setIndustries(oldarr => (resp.data))
+      setFilterIndustries(oldarr => (resp.data))
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  useEffect(() => {
+    getIndustries()
+  },[]);
+
   const handleDelete = (id) => {
 
   }
 
-  const handleCreate = () => {
-
-    setShowForm(false)
+  const handleCreate = (e) => {
+    e.preventDefault();
+    const industryName = e.target.industryName.value
+    const esgScore = e.target.esgScore.value
+    console.log(esgScore)
+    axios.post('http://127.0.0.1:8000/moneyplant/industry/', {name: industryName, esgScore: esgScore})
+    .then(resp => {
+      console.log(resp)
+      setShowForm(false) // Hide form after successful creation
+      getIndustries()
+    })
+    .catch(err => {console.log(err)})
   }
 
 
@@ -37,22 +64,22 @@ const Industries = (props) => {
         onChange={(e) => filterData(e)}
       />
       {showForm && (
-        <form>
+        <form onSubmit={handleCreate}>
           <Grid container>
             <Grid item>
               <FormControl>
-                <InputLabel htmlFor="name">Industry Name</InputLabel>
-                <Input id="name" sx={{ width: 180 }} />
+                <InputLabel htmlFor="industryName">Industry Name</InputLabel>
+                <Input name="industryName" id="industryName" sx={{ width: 180 }} />
               </FormControl>
             </Grid>
             <Grid item>
               <FormControl>
-                <InputLabel htmlFor="esgScore">ESG Score</InputLabel>
-                <Input id="esgScore" sx={{ width: 60 }} />
+                <InputLabel htmlFor="esgScore">Mean ESG Score</InputLabel>
+                <Input name="esgScore" id="esgScore" sx={{ width: 60 }} />
               </FormControl>
             </Grid>
             <Button onClick={() => setShowForm(false)}>Cancel</Button>
-            <Button onClick={handleCreate}>Add</Button>
+            <Button type='submit'>Add</Button>
           </Grid>
         </form>
 
