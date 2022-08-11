@@ -1,0 +1,133 @@
+:root {
+   --primary-color: #3cbf50;
+   --dark-color: #000000;
+   --light-color: #f4f4f4;
+   --danger-color: #dc3545;
+   --success-color: #28a745;
+}
+
+.App {
+   color: var(--primary-color);
+   font-family: Roboto;
+}
+
+.container {
+   max-width: 1100px;
+   margin: auto;
+   margin-top: 8rem;
+   margin-bottom: 3rem;
+}
+
+.companyDetails {
+   background-color: rgba(255, 255, 255);
+   border-radius: 30px;
+   padding: 2rem 8rem;
+   color: #363434;
+}
+
+.companyDetails img {
+   margin-left: 10vw;
+}
+
+.companyDetails div {
+   margin-top: 2rem;
+}
+
+.industryCardContainer {
+   display: grid;
+   grid-template-columns: repeat(3, minmax(0px, 1fr));
+}
+
+.navbar {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   background-color: var(--dark-color);
+   padding: 0.7rem 3rem;
+   align-items: center;
+   font-weight: bold;
+   position: fixed;
+   width: 100%;
+   top: 0;
+   z-index: 9999999999;
+}
+
+.navbar a {
+   color: var(--primary-color);
+   text-decoration: none;
+   margin-right: 3rem;
+}
+
+a {
+   text-decoration: none;
+   color: black;
+}
+
+a:hover {
+   color: #038d46;
+   text-decoration: underline;
+}
+
+.navbar-list {
+   display: flex;
+   flex-direction: row;
+   list-style: none;
+   font-size: larger;
+   font-weight: 500;
+   font-size: 20px;
+   margin-right: 3rem;
+}
+
+.DetailComponent {
+   border-bottom: solid;
+   color: black;
+   border-bottom-style: double;
+}
+
+.bannerContainer {
+   align-items: left;
+}
+
+.BrowseCompanies {
+   justify-content: left;
+}
+
+.btn-green {
+   display: inline-block;
+   background: var(--primary-color);
+   color: #333;
+   width: fit-content;
+   border-radius: 10px;
+   padding: 0.5rem 0.75rem;
+   font-size: 1rem;
+   border: none;
+   cursor: pointer;
+   transition: opacity 0.2s ease-in;
+   outline: none;
+}
+
+.btn-red {
+   display: inline-block;
+   background: var(--danger-color);
+   color: #333;
+   width: fit-content;
+   border-radius: 10px;
+   padding: 0.5rem 0.75rem;
+   font-size: 1rem;
+   border: none;
+   cursor: pointer;
+   transition: opacity 0.2s ease-in;
+   outline: none;
+}
+
+.addIndustryButton {
+   display: flex;
+   justify-content: space-between;
+}
+
+.aboutContent {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   margin-right: "3rem";
+}
