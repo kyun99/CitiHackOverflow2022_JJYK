@@ -13,10 +13,12 @@ function App() {
       <div className="App">
          <Fragment>
             <Router>
+               <Routes>
+                  <Route exact path="" element={<Home />} />
+               </Routes>
                <Navbar />
                <section className="container">
                   <Routes>
-                     <Route exact path="" element={<Home />} />
                      <Route exact path="about" element={<About />} />
                      <Route
                         exact
