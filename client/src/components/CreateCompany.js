@@ -1,82 +1,65 @@
 import React, { Fragment, useEffect, useState } from "react";
 import BankerForm from "./BankerForm";
-import axios from 'axios';
+import axios from "axios";
 import { Navigate } from "react-router-dom";
 
 const CreateCompany = (props) => {
    const [recentDevelopments, setRecentDevelopments] = useState([]);
 
-<<<<<<< HEAD
    const [esgInitiatives, setEsgInitiatives] = useState([]);
+   const [bloombergCode, setBloombergCode] = useState();
+   const [name, setName] = useState();
+   const [industry, setIndustry] = useState();
+   const [description, setDescription] = useState();
+   const [marketcap, setMarketcap] = useState();
+   const [recommendation, setRecommendation] = useState();
+   const [targetprice, setTargetPrice] = useState();
 
-   const handleCreate = () => {};
-=======
-  const [esgInitiatives, setEsgInitiatives] = useState([])
-  const [bloombergCode, setBloombergCode] = useState()
-  const [name, setName] = useState()
-  const [industry, setIndustry]=useState()
-  const [description, setDescription]=useState()
-  const [marketcap, setMarketcap]=useState()
-  const [recommendation, setRecommendation] = useState()
-  const [targetprice, setTargetPrice] = useState()
-  
-  const [created, setCreated] = useState(false)
+   const [created, setCreated] = useState(false);
 
-  const handleCreate = (e) => {
-    e.preventDefault();
-    const data = {bloomberg_code: bloombergCode,
-    name: name,
-    industry: industry,
-    description:description,
-    market_cap: marketcap,
-    recommendation: recommendation,
-    target_price: targetprice }
-    
-    console.log(data)
-    axios.post('http://127.0.0.1:8000/moneyplant/company/', data)
-    .then(resp => {
-      console.log(resp.status)
-      setCreated(prev => true)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
-  
-  return <Fragment>
-    <h2>Create Company</h2>
-    <BankerForm 
-      recentDevelopments={recentDevelopments}
-      esgInitiatives={esgInitiatives}
-      setRecentDevelopments={setRecentDevelopments}
-      setEsgInitiatives={setEsgInitiatives}
-      handleCreate={handleCreate}
+   const handleCreate = (e) => {
+      e.preventDefault();
+      const data = {
+         bloomberg_code: bloombergCode,
+         name: name,
+         industry: industry,
+         description: description,
+         market_cap: marketcap,
+         recommendation: recommendation,
+         target_price: targetprice,
+      };
 
-      setBloombergCode={setBloombergCode}
-      setName={setName}
-      setIndustry={setIndustry}
-      setDescription={setDescription}
-      setMarketcap={setMarketcap}
-      setRecommendation={setRecommendation}
-      setTargetPrice={setTargetPrice}
-
-      isCreateNew={true}
-    />
-    {(created && <Navigate to="/companies" replace={true}/>)}
-  </Fragment>
->>>>>>> 0ea8e57240e7e0444234728c760c039f9c7f42e0
+      console.log(data);
+      axios
+         .post("http://127.0.0.1:8000/moneyplant/company/", data)
+         .then((resp) => {
+            console.log(resp.status);
+            setCreated((prev) => true);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   };
 
    return (
-      <Fragment className="container">
-         <h2>Edit Company Details</h2>
+      <Fragment>
+         <h2>Create Company</h2>
          <BankerForm
             recentDevelopments={recentDevelopments}
             esgInitiatives={esgInitiatives}
             setRecentDevelopments={setRecentDevelopments}
             setEsgInitiatives={setEsgInitiatives}
             handleCreate={handleCreate}
+            setBloombergCode={setBloombergCode}
+            setName={setName}
+            setIndustry={setIndustry}
+            setDescription={setDescription}
+            setMarketcap={setMarketcap}
+            setRecommendation={setRecommendation}
+            setTargetPrice={setTargetPrice}
             isCreateNew={true}
          />
+         {created && <Navigate to="/companies" replace={true} />}
       </Fragment>
    );
 };

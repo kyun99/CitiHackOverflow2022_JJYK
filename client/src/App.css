@@ -58,8 +58,14 @@
    margin-right: 3rem;
 }
 
-a :hover {
+a {
+   text-decoration: none;
+   color: black;
+}
+
+a:hover {
    color: #038d46;
+   text-decoration: underline;
 }
 
 .navbar-list {
@@ -89,6 +95,20 @@ a :hover {
 .btn-green {
    display: inline-block;
    background: var(--primary-color);
+   color: #333;
+   width: fit-content;
+   border-radius: 10px;
+   padding: 0.5rem 0.75rem;
+   font-size: 1rem;
+   border: none;
+   cursor: pointer;
+   transition: opacity 0.2s ease-in;
+   outline: none;
+}
+
+.btn-red {
+   display: inline-block;
+   background: var(--danger-color);
    color: #333;
    width: fit-content;
    border-radius: 10px;
