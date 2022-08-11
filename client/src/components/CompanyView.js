@@ -36,7 +36,7 @@ export default function BasicCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button component={Link} to="/details" size="small">See more details about {props.companyname} here</Button>
+        <Button component={Link} to={props.linkTo} size="small">See more details about {props.companyname} here</Button>
       </CardActions>
     </Card>
   );

@@ -1,11 +1,18 @@
 import { Button, Grid } from "@mui/material";
 import React, { Fragment } from "react";
+import { useLocation } from "react-router-dom"
 import DetailImage from "./DetailImage";
 import DetailText from './DetailText';
 
 const CompanyDetailPage = (props) => {
-   const CompanyName = "Wilmar International"
-   const bloombergCode = "REALCODE"
+   const companyName = "Place holder name"
+   const location = useLocation()
+   const params = new URLSearchParams(location.search)
+   const bloombergCode =  params.get('code');
+   const profile = props.profile
+
+
+
    const editLink = `/banker/edit?code=${bloombergCode}`
 
    //Example information borrowed from DBS market insights page (open for viewing)
@@ -15,11 +22,11 @@ const CompanyDetailPage = (props) => {
          <div style={{fontSize:"30px"}}>
           <Grid container>
             <Grid item>
-            <h1 className="name">{CompanyName}</h1> 
+            <h1 className="name">{companyName}</h1> 
             </Grid>
             <Grid item textAlign='right'>
             <div style={{ display:"flex" }}>
-            { props.isBanker && <Button variant='contained' style={{marginLeft:"auto"}}>
+            {props.isBanker && <Button variant='contained' style={{marginLeft:"auto"}}>
               <a href={editLink} >Edit Analysis</a>
               </Button>}
             </div>
@@ -32,7 +39,7 @@ const CompanyDetailPage = (props) => {
             />
             <DetailText 
                title="Profile"
-               content="Wilmar International (Wilmar) is an integrated agribusiness company. It is involved in oil palm cultivation, edible oil refining, oilseed crushing, consumer pack edible oil processing and merchandising, specialty fats, oleochemicals and biodiesel manufacturing, and grain processing and merchandising. Wilmar also manufactures and distributes fertilisers and owns a fleet of vessels." 
+               content={profile}
             />
             <DetailImage 
                title="Previous Close Price"
