@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function SearchBar() {
+export default function SearchBar(props) {
   return (
     <Box
       component="form"
@@ -17,6 +17,7 @@ export default function SearchBar() {
           label="Search for company"
           type="search"
           variant="standard"
+          onChange={props.onChange}
         />
     </Box>
   );

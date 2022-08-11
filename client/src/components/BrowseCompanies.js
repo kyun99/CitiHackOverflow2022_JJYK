@@ -2,6 +2,7 @@ import React, {Fragment, useState} from "react";
 import CompanyView from "./CompanyView";
 import SearchBar from './SearchBar';
 
+
 const BrowseCompanies = (props) => {
 
   const [companies, setCompanies] = useState(
@@ -33,13 +34,16 @@ const BrowseCompanies = (props) => {
 
 
   const filterData = (e) => {
-    console.log(e)
-    console.log("called")
-    // if (!query) {
-    //   return data;
-    // } else {
-    //   return data.filter((d) => d.toLowerCase().includes(query));
-    // }
+    var  q = e.target.value
+    console.log(q)
+    if (!q) {
+      setFilteredCompanies(companies)
+    } else {
+      const temp = companies.filter((d) => {
+        return d.companyname.toLowerCase().includes(q) || d.industry.toLowerCase().includes(q)
+        });
+      setFilteredCompanies(temp)
+    }
   };
 
    return (
@@ -47,9 +51,7 @@ const BrowseCompanies = (props) => {
          <div className="BrowseCompanies">
             <h1>Browse Companies</h1>
             <SearchBar  
-            // value={query}
-            // onChange={(newValue) => filterData(newValue)}
-            // onRequestSearch={() => filterData(query)}
+            onChange={(e) => filterData(e)}
             />
             {filteredCompanies.map(item => (
               <CompanyView 
