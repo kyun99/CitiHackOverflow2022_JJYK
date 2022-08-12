@@ -25,6 +25,7 @@ const CompanyDetailPage = (props) => {
    const [marketcap, setMarketcap] = useState("1.4B");
    const [recommendation, setRecommendation] = useState("Buy");
    const [targetprice, setTargetPrice] = useState("1.14");
+   const [esgScore, setEsgScore] = useState("2.5");
 
    const [esgInitiatives, setEsgInitiatives] = useState([
       {
@@ -126,6 +127,19 @@ const CompanyDetailPage = (props) => {
                   <span>{profile}</span>
                </div>
                <div>
+                  <h2>
+                     Recommendation:{" "}
+                     <i style={{ color: "green" }}>{recommendation}</i>
+                  </h2>
+               </div>
+               <div>
+               <div>
+                  <h2>
+                     Target Price:{" "}
+                     <i style={{ color: "green" }}>{targetprice}</i>
+                  </h2>
+               </div>
+               <div>
                   <h2>Previous Close Price</h2>
                   <img width={500} src={prevClosePrice} />
                </div>
@@ -135,11 +149,17 @@ const CompanyDetailPage = (props) => {
                </div>
                <div>
                   <h2>
-                     Recommendation:{" "}
-                     <i style={{ color: "green" }}>{recommendation}</i>
+                     ESG Score:{" "}
+                     <span>{esgScore}</span>
                   </h2>
                </div>
                <div>
+                  <h2>
+                     {industry}{" "}ESG Score:{" "}
+                     <span>{esgScore}</span>
+                  </h2>
+               </div>
+               <br/>
                   <h2>Key ESG Initiatives</h2>
                   <div>
                      {esgInitiatives.map((item) => (
