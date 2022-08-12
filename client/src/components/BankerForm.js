@@ -40,7 +40,7 @@ const BankerForm = (props) => {
 
   const removeRecentDevelopment = (index) => {
     props.setRecentDevelopments((prevState) => {
-      const newState = [...prevState]
+      const newState = []
       for (let i = 0; i < prevState.length; i++) {
         if (i != index) {
           const o = prevState[i]
@@ -244,7 +244,7 @@ const BankerForm = (props) => {
                     </div>
                     <button
                       className="btn-red"
-                      onClick={() => removeRecentDevelopment(index)}>
+                      onClick={(e) => {e.preventDefault(); removeRecentDevelopment(index)}}>
                       Delete
                     </button>
                   </div>
@@ -253,7 +253,7 @@ const BankerForm = (props) => {
               <br />
               <button
                 className="btn-green"
-                onClick={addRecentDevelopments}>
+                onClick={(e) =>{e.preventDefault(); addRecentDevelopments()}}>
                 + New Recent Development
               </button>
               <br />
@@ -304,14 +304,14 @@ const BankerForm = (props) => {
                     </div>
                     <button
                       className="btn-red"
-                      onClick={() => removeEsgInitiatives(index)}>
+                      onClick={(e) => {e.preventDefault();removeEsgInitiatives(index)}}>
                       Delete
                     </button>
                   </div>
                 </Grid>
               ))}
               <br />
-              <button className="btn-green" onClick={addEsgInitiatives}>
+              <button className="btn-green" onClick={(e) => {e.preventDefault(); addEsgInitiatives()}}>
                 + New ESG Initiatives
               </button>
               <br />
