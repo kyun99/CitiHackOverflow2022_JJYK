@@ -175,11 +175,12 @@ const Industries = (props) => {
                            {item.esgScore}
                         </Typography>
                      </CardContent>
-                     <Button
-                        variant="contained"
-                        onClick={() => handleDelete(item.id)}>
+                     <button
+                        className="btn-red"
+                        onClick={() => handleDelete(item.name)}
+                        style={{color:'white'}}>
                         Remove
-                     </Button>
+                     </button>
                   </Card>
                ))}
             </div>
